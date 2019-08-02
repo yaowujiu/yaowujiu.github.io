@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Pythonʵ�� ջ | Hexo</title>
+  <title>Python对栈的实现 | 姚云龙的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ѧϰ�ʼǣ�������Pythonʵ�� ջ ���ǡ�Python�����ʦ��ͨ��רҵ����Ա�����ɡ������ߣ�����¶������Ȿ��ѧϰ�����ݣ����� ջ ��������Pythonʵ�֣��������������ģ��Ȿ�����΢�Ŷ���APP�Ķ��� ջջ��stack����һ�����ݽṹ�����б����ƣ����ǿ�����ջ����">
+  <meta name="description" content="学习笔记：关于用Python实现 栈 ，是《Python编程无师自通：专业程序员的养成》（作者：科里·奥尔索夫）这本书学习的内容，关于 栈 的描述和Python实现，都是书中描述的，这本书可在微信读书APP阅读。 栈栈（stack）是一种数据结构。与列表类似，我们可以向栈中添加或移除元素，但是不同的地方是，只能添加或移除最后一个元素。假设有一个列表[1, 2, 3]，我们可以移除其中任意一个元素。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pythonʵ�� ջ">
+<meta property="og:title" content="Python对栈的实现">
 <meta property="og:url" content="http://yoursite.com/2019/08/02/Python对栈的实现/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="ѧϰ�ʼǣ�������Pythonʵ�� ջ ���ǡ�Python�����ʦ��ͨ��רҵ����Ա�����ɡ������ߣ�����¶������Ȿ��ѧϰ�����ݣ����� ջ ��������Pythonʵ�֣��������������ģ��Ȿ�����΢�Ŷ���APP�Ķ��� ջջ��stack����һ�����ݽṹ�����б����ƣ����ǿ�����ջ����">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-02T13:00:39.168Z">
+<meta property="og:site_name" content="姚云龙的博客">
+<meta property="og:description" content="学习笔记：关于用Python实现 栈 ，是《Python编程无师自通：专业程序员的养成》（作者：科里·奥尔索夫）这本书学习的内容，关于 栈 的描述和Python实现，都是书中描述的，这本书可在微信读书APP阅读。 栈栈（stack）是一种数据结构。与列表类似，我们可以向栈中添加或移除元素，但是不同的地方是，只能添加或移除最后一个元素。假设有一个列表[1, 2, 3]，我们可以移除其中任意一个元素。">
+<meta property="og:locale" content="utf-8">
+<meta property="og:updated_time" content="2019-08-02T13:47:31.840Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pythonʵ�� ջ">
-<meta name="twitter:description" content="ѧϰ�ʼǣ�������Pythonʵ�� ջ ���ǡ�Python�����ʦ��ͨ��רҵ����Ա�����ɡ������ߣ�����¶������Ȿ��ѧϰ�����ݣ����� ջ ��������Pythonʵ�֣��������������ģ��Ȿ�����΢�Ŷ���APP�Ķ��� ջջ��stack����һ�����ݽṹ�����б����ƣ����ǿ�����ջ����">
+<meta name="twitter:title" content="Python对栈的实现">
+<meta name="twitter:description" content="学习笔记：关于用Python实现 栈 ，是《Python编程无师自通：专业程序员的养成》（作者：科里·奥尔索夫）这本书学习的内容，关于 栈 的描述和Python实现，都是书中描述的，这本书可在微信读书APP阅读。 栈栈（stack）是一种数据结构。与列表类似，我们可以向栈中添加或移除元素，但是不同的地方是，只能添加或移除最后一个元素。假设有一个列表[1, 2, 3]，我们可以移除其中任意一个元素。">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="姚云龙的博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -50,7 +50,7 @@
 			<img src="/assets/img/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Yao</a></h1>
+		  <h1 class="header-author"><a href="/">姚云龙</a></h1>
 		</hgroup>
 		
 
@@ -108,7 +108,7 @@
 				<img src="/assets/img/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Yao</h1>
+			  <h1 class="header-author js-header-author">姚云龙</h1>
 			</hgroup>
 			
 			
@@ -161,22 +161,22 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Pythonʵ�� ջ
+      Python对栈的实现
     </h1>
   
 
         
         <a href="/2019/08/02/Python对栈的实现/" class="archive-article-date">
-  	<time datetime="2019-08-02T12:22:51.111Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
+  	<time datetime="2019-08-02T13:46:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ѧϰ�ʼǣ�������Pythonʵ�� ջ ���ǡ�Python�����ʦ��ͨ��רҵ����Ա�����ɡ������ߣ�����¶������Ȿ��ѧϰ�����ݣ����� ջ ��������Pythonʵ�֣��������������ģ��Ȿ�����΢�Ŷ���APP�Ķ���</p>
-<h1 id="ջ"><a href="#ջ" class="headerlink" title="ջ"></a>ջ</h1><p>ջ��stack����һ�����ݽṹ�����б����ƣ����ǿ�����ջ�����ӻ��Ƴ�Ԫ�أ����ǲ�ͬ�ĵط��ǣ�ֻ�����ӻ��Ƴ����һ��Ԫ�ء�������һ���б�[1, 2, 3]�����ǿ����Ƴ���������һ��Ԫ�ء����Ƕ����ں���ͬԪ�ص�ջ����ֻ���Ƴ��������һ��Ԫ��3���Ƴ�3 ֮��ջ�ͱ����[1, 2]����ʱֻ���Ƴ�2���Ƴ�2 ֮�󣬿��Լ����Ƴ�1����ʱջ<br>�����һ����ջ����Ԫ�ش�ջ���Ƴ�������Ϊ��ջ��popping���������1 �Ż�ջ�У�������[1]���ٽ�2 �Żأ�����[1, 2]����Ԫ�طŻ�ջ�У�����Ϊ��ջ��pushing�����������һ�������Ԫ�ر���һ��ȡ�������ݽṹ��Ҳ����Ϊ�Ƚ������LIFO�������ݽṹ��</p>
-<h2 id="ջ��ʵ��"><a href="#ջ��ʵ��" class="headerlink" title="ջ��ʵ��"></a>ջ��ʵ��</h2><p>ջ��5 ��������is_empty��push��pop��peek ��size�����ջΪ�գ�is_empty ����True����֮�򷵻�False��push<br>��ջ�Ķ�������һ��Ԫ�أ�pop �Ӷ����Ƴ�һ��Ԫ�أ�peek ���ض�����Ԫ�أ������Ὣ���Ƴ���size ����һ����ʾջ��Ԫ����������������</p>
+        <p>学习笔记：关于用Python实现 栈 ，是《Python编程无师自通：专业程序员的养成》（作者：科里·奥尔索夫）这本书学习的内容，关于 栈 的描述和Python实现，都是书中描述的，这本书可在微信读书APP阅读。</p>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>栈（stack）是一种数据结构。与列表类似，我们可以向栈中添加或移除元素，但是不同的地方是，只能添加或移除最后一个元素。假设有一个列表[1, 2, 3]，我们可以移除其中任意一个元素。但是对于内含相同元素的栈，则只能移除其中最后一个元素3。移除3 之后，栈就变成了[1, 2]，这时只能移除2。移除2 之后，可以继续移除1，这时栈<br>变成了一个空栈。将元素从栈中移除，被称为出栈（popping）。如果将1 放回栈中，则变成了[1]；再将2 放回，则是[1, 2]。将元素放回栈中，被称为入栈（pushing）。这种最后一个放入的元素被第一个取出的数据结构，也被称为先进后出（LIFO）型数据结构。</p>
+<h2 id="栈的实现"><a href="#栈的实现" class="headerlink" title="栈的实现"></a>栈的实现</h2><p>栈有5 个方法：is_empty、push、pop、peek 和size。如果栈为空，is_empty 返回True，反之则返回False。push<br>向栈的顶部添加一个元素；pop 从顶部移除一个元素；peek 返回顶部的元素，但不会将其移除；size 返回一个表示栈中元素数量的整型数。</p>
 <a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.items = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.items == []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self,item)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.items.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pull</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.items.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">peek</span><span class="params">(self)</span>:</span></span><br><span class="line">        last = len(self.items - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> self.items[last]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">size</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.items)</span><br></pre></td></tr></table></figure>
       
@@ -276,15 +276,6 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/02/Python对栈的实现-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Python对栈的实现
-        
-      </div>
-    </a>
-  
   
     <a href="/2019/04/05/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Hello World</div>
@@ -330,7 +321,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Yao
+    		&copy; 2019 姚云龙
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
