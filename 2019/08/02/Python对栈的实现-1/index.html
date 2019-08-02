@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>Python对栈的实现 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="学习笔记：关于用Python实现 栈 ，是《Python编程无师自通：专业程序员的养成》（作者：科里·奥尔索夫）这本书学习的内容，关于 栈 的描述和Python实现，都是书中描述的，这本书可在微信读书APP阅读。 栈栈（stack）是一种数据结构。与列表类似，我们可以向栈中添加或移除元素，但是不同的地方是，只能添加或移除最后一个元素。假设有一个列表[1, 2, 3]，我们可以移除其中任意一个元素。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python对栈的实现">
+<meta property="og:url" content="http://yoursite.com/2019/08/02/Python对栈的实现-1/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="学习笔记：关于用Python实现 栈 ，是《Python编程无师自通：专业程序员的养成》（作者：科里·奥尔索夫）这本书学习的内容，关于 栈 的描述和Python实现，都是书中描述的，这本书可在微信读书APP阅读。 栈栈（stack）是一种数据结构。与列表类似，我们可以向栈中添加或移除元素，但是不同的地方是，只能添加或移除最后一个元素。假设有一个列表[1, 2, 3]，我们可以移除其中任意一个元素。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-02T13:47:31.840Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Python对栈的实现">
+<meta name="twitter:description" content="学习笔记：关于用Python实现 栈 ，是《Python编程无师自通：专业程序员的养成》（作者：科里·奥尔索夫）这本书学习的内容，关于 栈 的描述和Python实现，都是书中描述的，这本书可在微信读书APP阅读。 栈栈（stack）是一种数据结构。与列表类似，我们可以向栈中添加或移除元素，但是不同的地方是，只能添加或移除最后一个元素。假设有一个列表[1, 2, 3]，我们可以移除其中任意一个元素。">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,103 +154,164 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Python对栈的实现-1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Python对栈的实现
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/Python对栈的实现-1/" class="archive-article-date">
+
+        
+        <a href="/2019/08/02/Python对栈的实现-1/" class="archive-article-date">
   	<time datetime="2019-08-02T13:46:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/Python对栈的实现-1/">Python对栈的实现</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习笔记：关于用Python实现 栈 ，是《Python编程无师自通：专业程序员的养成》（作者：科里·奥尔索夫）这本书学习的内容，关于 栈 的描述和Python实现，都是书中描述的，这本书可在微信读书APP阅读。</p>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>栈（stack）是一种数据结构。与列表类似，我们可以向栈中添加或移除元素，但是不同的地方是，只能添加或移除最后一个元素。假设有一个列表[1, 2, 3]，我们可以移除其中任意一个元素。但是对于内含相同元素的栈，则只能移除其中最后一个元素3。移除3 之后，栈就变成了[1, 2]，这时只能移除2。移除2 之后，可以继续移除1，这时栈<br>变成了一个空栈。将元素从栈中移除，被称为出栈（popping）。如果将1 放回栈中，则变成了[1]；再将2 放回，则是[1, 2]。将元素放回栈中，被称为入栈（pushing）。这种最后一个放入的元素被第一个取出的数据结构，也被称为先进后出（LIFO）型数据结构。</p>
+<h2 id="栈的实现"><a href="#栈的实现" class="headerlink" title="栈的实现"></a>栈的实现</h2><p>栈有5 个方法：is_empty、push、pop、peek 和size。如果栈为空，is_empty 返回True，反之则返回False。push<br>向栈的顶部添加一个元素；pop 从顶部移除一个元素；peek 返回顶部的元素，但不会将其移除；size 返回一个表示栈中元素数量的整型数。</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.items = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.items == []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self,item)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.items.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pull</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.items.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">peek</span><span class="params">(self)</span>:</span></span><br><span class="line">        last = len(self.items - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> self.items[last]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">size</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.items)</span><br></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
-          
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/02/Python对栈的实现-1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/Python对栈的实现/" class="archive-article-date">
-  	<time datetime="2019-08-02T12:22:51.111Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/02/Python对栈的实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Pythonʵ�� ջ</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/Python对栈的实现/">Pythonʵ�� ջ</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/05/hello-world/" class="archive-article-date">
-  	<time datetime="2019-04-05T13:34:14.555Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/05/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -269,8 +334,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
