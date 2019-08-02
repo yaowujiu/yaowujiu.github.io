@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Pythonʵ�� ջ | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="ѧϰ�ʼǣ�������Pythonʵ�� ջ ���ǡ�Python�����ʦ��ͨ��רҵ����Ա�����ɡ������ߣ�����¶������Ȿ��ѧϰ�����ݣ����� ջ ��������Pythonʵ�֣��������������ģ��Ȿ�����΢�Ŷ���APP�Ķ��� ջջ��stack����һ�����ݽṹ�����б����ƣ����ǿ�����ջ����">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pythonʵ�� ջ">
+<meta property="og:url" content="http://yoursite.com/2019/08/02/Python对栈的实现/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ѧϰ�ʼǣ�������Pythonʵ�� ջ ���ǡ�Python�����ʦ��ͨ��רҵ����Ա�����ɡ������ߣ�����¶������Ȿ��ѧϰ�����ݣ����� ջ ��������Pythonʵ�֣��������������ģ��Ȿ�����΢�Ŷ���APP�Ķ��� ջջ��stack����һ�����ݽṹ�����б����ƣ����ǿ�����ջ����">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-02T13:00:39.168Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Pythonʵ�� ջ">
+<meta name="twitter:description" content="ѧϰ�ʼǣ�������Pythonʵ�� ջ ���ǡ�Python�����ʦ��ͨ��רҵ����Ա�����ɡ������ߣ�����¶������Ȿ��ѧϰ�����ݣ����� ջ ��������Pythonʵ�֣��������������ģ��Ȿ�����΢�Ŷ���APP�Ķ��� ջջ��stack����һ�����ݽṹ�����б����ƣ����ǿ�����ջ����">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,76 +154,164 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Python对栈的实现" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Pythonʵ�� ջ
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/Python对栈的实现/" class="archive-article-date">
+
+        
+        <a href="/2019/08/02/Python对栈的实现/" class="archive-article-date">
   	<time datetime="2019-08-02T12:22:51.111Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/Python对栈的实现/">Pythonʵ�� ջ</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ѧϰ�ʼǣ�������Pythonʵ�� ջ ���ǡ�Python�����ʦ��ͨ��רҵ����Ա�����ɡ������ߣ�����¶������Ȿ��ѧϰ�����ݣ����� ջ ��������Pythonʵ�֣��������������ģ��Ȿ�����΢�Ŷ���APP�Ķ���</p>
+<h1 id="ջ"><a href="#ջ" class="headerlink" title="ջ"></a>ջ</h1><p>ջ��stack����һ�����ݽṹ�����б����ƣ����ǿ�����ջ�����ӻ��Ƴ�Ԫ�أ����ǲ�ͬ�ĵط��ǣ�ֻ�����ӻ��Ƴ����һ��Ԫ�ء�������һ���б�[1, 2, 3]�����ǿ����Ƴ���������һ��Ԫ�ء����Ƕ����ں���ͬԪ�ص�ջ����ֻ���Ƴ��������һ��Ԫ��3���Ƴ�3 ֮��ջ�ͱ����[1, 2]����ʱֻ���Ƴ�2���Ƴ�2 ֮�󣬿��Լ����Ƴ�1����ʱջ<br>�����һ����ջ����Ԫ�ش�ջ���Ƴ�������Ϊ��ջ��popping���������1 �Ż�ջ�У�������[1]���ٽ�2 �Żأ�����[1, 2]����Ԫ�طŻ�ջ�У�����Ϊ��ջ��pushing�����������һ�������Ԫ�ر���һ��ȡ�������ݽṹ��Ҳ����Ϊ�Ƚ������LIFO�������ݽṹ��</p>
+<h2 id="ջ��ʵ��"><a href="#ջ��ʵ��" class="headerlink" title="ջ��ʵ��"></a>ջ��ʵ��</h2><p>ջ��5 ��������is_empty��push��pop��peek ��size�����ջΪ�գ�is_empty ����True����֮�򷵻�False��push<br>��ջ�Ķ�������һ��Ԫ�أ�pop �Ӷ����Ƴ�һ��Ԫ�أ�peek ���ض�����Ԫ�أ������Ὣ���Ƴ���size ����һ����ʾջ��Ԫ����������������</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.items = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.items == []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self,item)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.items.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pull</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.items.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">peek</span><span class="params">(self)</span>:</span></span><br><span class="line">        last = len(self.items - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> self.items[last]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">size</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.items)</span><br></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
-          
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/02/Python对栈的实现/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/05/hello-world/" class="archive-article-date">
-  	<time datetime="2019-04-05T13:34:14.555Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/05/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/05/hello-world/">Hello World</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -242,8 +334,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
