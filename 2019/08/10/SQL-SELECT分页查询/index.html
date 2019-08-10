@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SQL-SELECT分页查询.md | 姚云龙的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习笔记：（原文链接：https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600） SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
+  <meta name="description" content="学习笔记：原文地址: https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600 SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL-SELECT分页查询.md">
 <meta property="og:url" content="http://yoursite.com/2019/08/10/SQL-SELECT分页查询/index.html">
 <meta property="og:site_name" content="姚云龙的博客">
-<meta property="og:description" content="学习笔记：（原文链接：https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600） SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
+<meta property="og:description" content="学习笔记：原文地址: https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600 SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
 <meta property="og:locale" content="utf-8">
-<meta property="og:updated_time" content="2019-08-10T15:13:27.293Z">
+<meta property="og:updated_time" content="2019-08-10T15:21:29.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL-SELECT分页查询.md">
-<meta name="twitter:description" content="学习笔记：（原文链接：https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600） SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
+<meta name="twitter:description" content="学习笔记：原文地址: https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600 SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
   
     <link rel="alternative" href="/atom.xml" title="姚云龙的博客" type="application/atom+xml">
   
@@ -174,7 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>学习笔记：（原文链接：<a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600）" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600）</a></p>
+        <p>学习笔记：原文地址: <a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600" target="_blank">https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600</a></p>
 <h1 id="SELECT查询分页查询"><a href="#SELECT查询分页查询" class="headerlink" title="SELECT查询分页查询"></a>SELECT查询分页查询</h1><p>分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过<code>LIMIT &lt;M&gt; OFFSET &lt;N&gt;</code>子句实现.</p>
 <a id="more"></a>
 <p><code>LIMIT 3 OFFSET 0</code>表示，对结果集从0号记录开始，最多取3条,<code>LIMIT 3</code>表示的意思是“最多3条记录”,注意SQL记录集的索引从0开始.</p>
