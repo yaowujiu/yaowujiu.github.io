@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SQL-SELECT分页查询.md | 姚云龙的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习笔记：（原文链接：https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600） #SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
+  <meta name="description" content="学习笔记：（原文链接：https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600） SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL-SELECT分页查询.md">
 <meta property="og:url" content="http://yoursite.com/2019/08/10/SQL-SELECT分页查询/index.html">
 <meta property="og:site_name" content="姚云龙的博客">
-<meta property="og:description" content="学习笔记：（原文链接：https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600） #SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
+<meta property="og:description" content="学习笔记：（原文链接：https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600） SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
 <meta property="og:locale" content="utf-8">
-<meta property="og:updated_time" content="2019-08-10T15:10:55.841Z">
+<meta property="og:updated_time" content="2019-08-10T15:13:27.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL-SELECT分页查询.md">
-<meta name="twitter:description" content="学习笔记：（原文链接：https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600） #SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
+<meta name="twitter:description" content="学习笔记：（原文链接：https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600） SELECT查询分页查询分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过LIMIT &amp;lt;M&amp;gt; OFFSET &amp;lt;N&amp;gt;子句实现.">
   
     <link rel="alternative" href="/atom.xml" title="姚云龙的博客" type="application/atom+xml">
   
@@ -175,12 +175,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>学习笔记：（原文链接：<a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600）" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600）</a></p>
-<p>#SELECT查询分页查询<br>分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过<code>LIMIT &lt;M&gt; OFFSET &lt;N&gt;</code>子句实现.</p>
+<h1 id="SELECT查询分页查询"><a href="#SELECT查询分页查询" class="headerlink" title="SELECT查询分页查询"></a>SELECT查询分页查询</h1><p>分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过<code>LIMIT &lt;M&gt; OFFSET &lt;N&gt;</code>子句实现.</p>
 <a id="more"></a>
 <p><code>LIMIT 3 OFFSET 0</code>表示，对结果集从0号记录开始，最多取3条,<code>LIMIT 3</code>表示的意思是“最多3条记录”,注意SQL记录集的索引从0开始.</p>
 <p>分页查询的关键在于，首先要确定每页需要显示的结果数量<code>pageSize</code>（这里是3），然后根据当前页的索引<code>pageIndex</code>（从1开始），确定<code>LIMIT</code>和<code>OFFSET</code>应该设定的值：<br><code>LIMIT</code>总是设定为<code>pageSize</code>；<br><code>OFFSET</code>计算公式为<code>pageSize * (pageIndex - 1)</code>.<br>这样就能正确查询出第N页的记录集.</p>
 <p><code>OFFSET</code>超过了查询的最大数量并不会报错，而是得到一个空的结果集.</p>
-<p>##注意<br><code>OFFSET</code>是可选的，如果只写<code>LIMIT 15</code>，那么相当于<code>LIMIT 15 OFFSET 0</code>.</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p><code>OFFSET</code>是可选的，如果只写<code>LIMIT 15</code>，那么相当于<code>LIMIT 15 OFFSET 0</code>.</p>
 <p>在MySQL中，<code>LIMIT 15 OFFSET 30</code>还可以简写成<code>LIMIT 30, 15</code>.</p>
 <p>使用<code>LIMIT &lt;M&gt; OFFSET &lt;N&gt;</code>分页时，随着N越来越大，查询效率也会越来越低.</p>
 
