@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>姚云龙的博客</title>
+  <title>git add 遇到的问题及解决 | 姚云龙的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="见证成长">
-<meta property="og:type" content="website">
-<meta property="og:title" content="姚云龙的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="git addGit 使用命令 git add 可使本地库的文件添加至版本库的暂存区（Stage） 遇到的问题YYL@SAMSUNG MINGW32 /d/Gitee/learngit (master) $ git add learngit.md warning: LF will be replaced by CRLF in learngit.md. The file will have its">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git add 遇到的问题及解决">
+<meta property="og:url" content="http://yoursite.com/2019/08/12/git-add-LF_or_CRLF/index.html">
 <meta property="og:site_name" content="姚云龙的博客">
-<meta property="og:description" content="见证成长">
+<meta property="og:description" content="git addGit 使用命令 git add 可使本地库的文件添加至版本库的暂存区（Stage） 遇到的问题YYL@SAMSUNG MINGW32 /d/Gitee/learngit (master) $ git add learngit.md warning: LF will be replaced by CRLF in learngit.md. The file will have its">
 <meta property="og:locale" content="utf-8">
+<meta property="og:updated_time" content="2019-08-13T12:44:49.882Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="姚云龙的博客">
-<meta name="twitter:description" content="见证成长">
+<meta name="twitter:title" content="git add 遇到的问题及解决">
+<meta name="twitter:description" content="git addGit 使用命令 git add 可使本地库的文件添加至版本库的暂存区（Stage） 遇到的问题YYL@SAMSUNG MINGW32 /d/Gitee/learngit (master) $ git add learngit.md warning: LF will be replaced by CRLF in learngit.md. The file will have its">
   
     <link rel="alternative" href="/atom.xml" title="姚云龙的博客" type="application/atom+xml">
   
@@ -153,16 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-git-add-LF_or_CRLF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-git-add-LF_or_CRLF" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/12/git-add-LF_or_CRLF/">git add 遇到的问题及解决</a>
+    <h1 class="article-title" itemprop="name">
+      git add 遇到的问题及解决
     </h1>
   
 
@@ -181,9 +180,42 @@
 warning: LF will be replaced by CRLF in learngit.md.
 The file will have its original line endings in your working directory
 </code></pre>
-        
+<a id="more"></a>
+<h2 id="理解和解决"><a href="#理解和解决" class="headerlink" title="理解和解决"></a>理解和解决</h2><p>这个问题通过一篇博文理解了原理和解决方法。<br>原文地址：<a href="https://www.cnblogs.com/liluxiang/p/9474919.html" target="_blank">https://www.cnblogs.com/liluxiang/p/9474919.html</a></p>
+<h3 id="警告内容"><a href="#警告内容" class="headerlink" title="警告内容"></a>警告内容</h3><p>警告：learngit.md 文件的<code>LF</code>将会被替换为<code>CRLF</code>。<br>在工作区（working directory）里，这个文件将会保持它原本的换行符。（line ending:行尾，换行）</p>
+<h3 id="警告内容的理解"><a href="#警告内容的理解" class="headerlink" title="警告内容的理解"></a>警告内容的理解</h3><h4 id="LF-Line-Feed-换行"><a href="#LF-Line-Feed-换行" class="headerlink" title="LF: Line Feed 换行"></a><code>LF</code>: Line Feed 换行</h4><h4 id="CRLF-Carriage-Return-Line-Feed-回车换行键"><a href="#CRLF-Carriage-Return-Line-Feed-回车换行键" class="headerlink" title="CRLF: Carriage Return Line Feed 回车换行键"></a><code>CRLF</code>: Carriage Return Line Feed 回车换行键</h4><ol>
+<li>不同的操作系统，对于行尾结束符的处理方法不同：<br>1.1 Windows下，处理方法是<code>CRLF</code>（句尾使用回车换行两个字符，即windows下的”\r\n”换行）<br>1.2 Linux下，处理方法是<code>LF</code>（句尾使用换行）<br>1.3 Mac下，处理方法是<code>CR</code>（句尾使用回车）</li>
+</ol>
+<p>2.Git对换行（<code>line endings</code>）的处理<br>  core.autocrlf是git中负责处理line ending的变量，可以设置3个值：true，false，input<br>  2.1 设置未true <code>config --global core.autocrlf true</code><br>      提交时转换为LF，检出时转换为CRLF<br>  2.2 设置未false <code>config --global core.autocrlf false</code><br>      提交和检出时不转换<br>  2.3 设置未input <code>config --global core.autocrlf input</code><br>      提交时转换为LF，检出时不转换</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -192,16 +224,24 @@ The file will have its original line endings in your working directory
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/12/git-add-LF_or_CRLF/">展开全文 >></a>
-        </p>
-      
 
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/11/Git命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git命令</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -221,281 +261,14 @@ The file will have its original line endings in your working directory
 
 
 
-
   
-    <article id="post-Git命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/11/Git命令/">Git命令</a>
-    </h1>
   
 
-        
-        <a href="/2019/08/11/Git命令/" class="archive-article-date">
-  	<time datetime="2019-08-11T08:03:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><p><code>git init</code> 初始化</p>
-<p><code>git add 文件</code> 把工作区（Working Directory）的文件添加至版本库（Repository）的暂存区（Stage）</p>
-<p><code>git commit -m &quot;描述&quot;</code> 把暂存区的文件提交至分支<code>master</code></p>
-<p><code>git status</code></p>
-<p><code>git log</code></p>
-<p><code>git reflog</code></p>
-<p><code>git diff</code></p>
-<p><code>git checkout -- 文件</code></p>
-<p><code>git rm</code> 删除一个文件</p>
-<p><code>git remote add origin git@server-name:path/repo-name.git</code> 关联一个远程库</p>
-<p><code>git push -u origin master</code> 第一次推送master分支的所有内容</p>
-<p><code>git push origin master</code> 推送最新修改</p>
-<p><code>git clone git@server-name:path/repo-name.git</code> 克隆一个本地库</p>
-<p>查看分支：git branch</p>
-<p>创建分支：git branch <name></name></p>
-<p>切换分支：git checkout <name></name></p>
-<p>创建+切换分支：git checkout -b <name></name></p>
-<p>合并某分支到当前分支：git merge <name></name></p>
-<p>删除分支：git branch -d <name></name></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/11/Git命令/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SQL-SELECT分页查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/10/SQL-SELECT分页查询/">SQL-SELECT分页查询.md</a>
-    </h1>
   
 
-        
-        <a href="/2019/08/10/SQL-SELECT分页查询/" class="archive-article-date">
-  	<time datetime="2019-08-10T14:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>学习笔记：原文地址: <a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600" target="_blank">https://www.liaoxuefeng.com/wiki/1177760294764384/1217864791925600</a></p>
-<h1 id="SELECT查询分页查询"><a href="#SELECT查询分页查询" class="headerlink" title="SELECT查询分页查询"></a>SELECT查询分页查询</h1><p>分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过<code>LIMIT &lt;M&gt; OFFSET &lt;N&gt;</code>子句实现.</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/10/SQL-SELECT分页查询/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python对栈的实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/02/Python对栈的实现/">Python对栈的实现</a>
-    </h1>
   
 
-        
-        <a href="/2019/08/02/Python对栈的实现/" class="archive-article-date">
-  	<time datetime="2019-08-02T13:46:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>学习笔记：关于用Python实现 栈 ，是《Python编程无师自通：专业程序员的养成》（作者：科里·奥尔索夫）这本书学习的内容，关于 栈 的描述和Python实现，在书中 第四部分-第21章 数据结构-21.2 栈。这本书可在微信读书APP阅读。</p>
-<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>栈（stack）是一种数据结构。与列表类似，我们可以向栈中添加或移除元素，但是不同的地方是，只能添加或移除最后一个元素。假设有一个列表[1, 2, 3]，我们可以移除其中任意一个元素。但是对于内含相同元素的栈，则只能移除其中最后一个元素3。移除3 之后，栈就变成了[1, 2]，这时只能移除2。移除2 之后，可以继续移除1，这时栈<br>变成了一个空栈。将元素从栈中移除，被称为出栈（popping）。如果将1 放回栈中，则变成了[1]；再将2 放回，则是[1, 2]。将元素放回栈中，被称为入栈（pushing）。这种最后一个放入的元素被第一个取出的数据结构，也被称为先进后出（LIFO）型数据结构。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/02/Python对栈的实现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/05/hello-world/" class="archive-article-date">
-  	<time datetime="2019-04-05T13:34:14.555Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/05/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -518,8 +291,8 @@ The file will have its original line endings in your working directory
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
